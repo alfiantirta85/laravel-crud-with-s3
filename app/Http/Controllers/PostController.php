@@ -48,7 +48,7 @@ class PostController extends Controller
 	{
 		//validate form
 		$this->validate($request, [
-			'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:5120',
+			'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
 			'nama' 		=> 'required|min:5',
 			'nik'		=> 'required|min:16',
 			'nisn'		=> 'required|min:5',
@@ -105,7 +105,7 @@ class PostController extends Controller
 	{
 		//validate form
 		$this->validate($request, [
-			'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:5120',
+			'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
 			'nama' 		=> 'required|min:5',
 			'nik'		=> 'required|min:16',
 			'nisn'		=> 'required|min:5',

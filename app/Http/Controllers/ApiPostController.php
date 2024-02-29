@@ -16,18 +16,22 @@ class ApiPostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'title' => 'required|min:5',
-            'content' => 'required|min:10'
+            'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
+			'nama' 		=> 'required|min:5',
+			'nik'		=> 'required|min:16',
+			'nisn'		=> 'required|min:5',
+			'alamat'	=> 'required|min:5'
         ]);
 
-        $image = $request->file('image');
-        $image->storeAs('public/images', $image->getClientOriginalName());
+        $foto = $request->file('foto');
+        $foto->storeAs($foto->getClientOriginalName());
 
         $post = Post::create([
-            'image' => $image->getClientOriginalName(),
-            'title' => $request->title,
-            'content' => $request->content
+            'foto'		=> $foto->getClientOriginalName(),
+			'nama'		=> $request->nama,
+			'nik'		=> $request->nik,
+			'nisn'		=> $request->nisn,
+			'alamat'	=> $request->alamat
         ]);
 
         return response()->json($post, 201);
@@ -57,18 +61,22 @@ class ApiPostController extends Controller
         }
 
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'title' => 'required|min:5',
-            'content' => 'required|min:10'
+            'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
+			'nama' 		=> 'required|min:5',
+			'nik'		=> 'required|min:16',
+			'nisn'		=> 'required|min:5',
+			'alamat'	=> 'required|min:5'
         ]);
 
-        $image = $request->file('image');
-        $image->storeAs('public/images', $image->getClientOriginalName());
+        $foto = $request->file('foto');
+        $foto->storeAs($foto->getClientOriginalName());
 
         $post->update([
-            'image' => $image->getClientOriginalName(),
-            'title' => $request->title,
-            'content' => $request->content
+            'foto'		=> $foto->getClientOriginalName(),
+			'nama'		=> $request->nama,
+			'nik'		=> $request->nik,
+			'nisn'		=> $request->nisn,
+			'alamat'	=> $request->alamat
         ]);
 
         return $post;
