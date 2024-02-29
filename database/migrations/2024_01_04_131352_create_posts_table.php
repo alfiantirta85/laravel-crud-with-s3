@@ -16,7 +16,7 @@ return new class extends Migration
 	        $table->string('foto');
 	        $table->string('nama');
 	        $table->bigInteger('nik');
-            $table->Integer('nisn');
+            $table->bigInteger('nisn');
             $table->char('alamat');
             $table->timestamps();
         });
