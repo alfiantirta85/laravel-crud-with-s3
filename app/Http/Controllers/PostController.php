@@ -49,9 +49,9 @@ class PostController extends Controller
 		//validate form
 		$this->validate($request, [
 			'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
-			'nama' 		=> 'required|min:5',
-			'nik'		=> 'required|min:16',
-			'nisn'		=> 'required|min:5',
+			'nama' 		=> 'required|min:4',
+			'nik'		=> 'required|digits:16',
+			'nisn'		=> 'required|digits:10',
 			'alamat'	=> 'required|min:5'
 		]);
 		//upload image
@@ -106,9 +106,9 @@ class PostController extends Controller
 		//validate form
 		$this->validate($request, [
 			'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
-			'nama' 		=> 'required|min:5',
-			'nik'		=> 'required|min:16',
-			'nisn'		=> 'required|min:5',
+			'nama' 		=> 'required|min:4',
+			'nik'		=> 'required|digits:16',
+			'nisn'		=> 'required|digits:10',
 			'alamat'	=> 'required|min:5'
 		]);
 		//get post by ID

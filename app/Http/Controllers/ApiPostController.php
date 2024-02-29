@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApiPostController extends Controller
 {
@@ -17,9 +18,9 @@ class ApiPostController extends Controller
     {
         $this->validate($request, [
             'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
-			'nama' 		=> 'required|min:5',
-			'nik'		=> 'required|min:16',
-			'nisn'		=> 'required|min:5',
+			'nama' 		=> 'required|min:4',
+			'nik'		=> 'required|digits:16',
+			'nisn'		=> 'required|digits:10',
 			'alamat'	=> 'required|min:5'
         ]);
 
@@ -62,14 +63,16 @@ class ApiPostController extends Controller
 
         $this->validate($request, [
             'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
-			'nama' 		=> 'required|min:5',
-			'nik'		=> 'required|min:16',
-			'nisn'		=> 'required|min:5',
+			'nama' 		=> 'required|min:4',
+			'nik'		=> 'required|digits:16',
+			'nisn'		=> 'required|digits:10',
 			'alamat'	=> 'required|min:5'
         ]);
 
         $foto = $request->file('foto');
         $foto->storeAs($foto->getClientOriginalName());
+
+        Storage::delete($post->foto);
 
         $post->update([
             'foto'		=> $foto->getClientOriginalName(),
@@ -92,6 +95,7 @@ class ApiPostController extends Controller
             ], 404);
         }
 
+        Storage::delete($post->foto);
         $post->delete();
         
         return response()->json([
