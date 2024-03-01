@@ -69,18 +69,28 @@ class ApiPostController extends Controller
 			'alamat'	=> 'required|min:5'
         ]);
 
-        $foto = $request->file('foto');
-        $foto->storeAs($foto->getClientOriginalName());
-
-        Storage::delete($post->foto);
-
-        $post->update([
-            'foto'		=> $foto->getClientOriginalName(),
-			'nama'		=> $request->nama,
-			'nik'		=> $request->nik,
-			'nisn'		=> $request->nisn,
-			'alamat'	=> $request->alamat
-        ]);
+        if ($request->hasFile('foto')) {
+			
+			$foto = $request->file('foto');
+			$foto->storeAs($foto->getClientOriginalName());
+			
+			Storage::delete($post->foto);
+			
+			$post->update([
+				'foto'		=> $foto->getClientOriginalName(),
+				'nama'		=> $request->nama,
+				'nik'		=> $request->nik,
+				'nisn'		=> $request->nisn,
+				'alamat'	=> $request->alamat
+			]);
+		} else {
+			$post->update([
+				'nama'		=> $request->nama,
+				'nik'		=> $request->nik,
+				'nisn'		=> $request->nisn,
+				'alamat'	=> $request->alamat
+			]);
+		}
 
         return $post;
     }
