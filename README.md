@@ -114,3 +114,5 @@ sudo systemctl restart apache2
 ```
 http://YOUR-IP/posts
 ```
+
+![2025-05-09_08-04](https://github.com/user-attachments/assets/3cfc2844-de54-4907-81b4-1326500f4d99)
