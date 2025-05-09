@@ -26,8 +26,8 @@
                                 <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama', $post->nama) }}" placeholder="Masukkan Nama Murid">
                                 <!-- error message untuk nama -->
                                 @error('nama')
-                                    <div class="alert alert-danger-mt-2">
-                                        {{ $mesaage }}
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
                                     </div>
                                 @enderror
                             </div>

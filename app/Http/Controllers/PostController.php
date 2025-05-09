@@ -56,10 +56,10 @@ class PostController extends Controller
 		]);
 		//upload image
 		$foto = $request->file('foto');
-		$foto->storeAs($foto->getClientOriginalName());
+		$foto->storeAs($foto->hashName());
 		//create post
 		Post::create([
-			'foto'		=> $foto->getClientOriginalName(),
+			'foto'		=> $foto->hashName(),
 			'nama'		=> $request->nama,
 			'nik'		=> $request->nik,
 			'nisn'		=> $request->nisn,
@@ -105,7 +105,7 @@ class PostController extends Controller
 	{
 		//validate form
 		$this->validate($request, [
-			'foto'		=> 'required|image|mimes:jpeg,jpg,png|max:2048',
+			'foto'		=> 'image|mimes:jpeg,jpg,png|max:2048',
 			'nama' 		=> 'required|min:4',
 			'nik'		=> 'required|digits:16',
 			'nisn'		=> 'required|digits:10',
@@ -117,12 +117,12 @@ class PostController extends Controller
 		if ($request->hasFile('foto')) {
 			//upload new image
 			$foto = $request->file('foto');
-			$foto->storeAs($foto->getClientOriginalName());
+			$foto->storeAs($foto->hashName());
 			//delete old image
 			Storage::delete($post->foto);
 			//update post with new image
 			$post->update([
-				'foto'		=> $foto->getClientOriginalName(),
+				'foto'		=> $foto->hashName(),
 				'nama'		=> $request->nama,
 				'nik'		=> $request->nik,
 				'nisn'		=> $request->nisn,

@@ -53,7 +53,7 @@
                                 </tr>
                               @empty
                                   <div class="alert alert-danger">
-                                      Data Murid belum Tersedia.
+                                      Data Murid Belum Tersedia.
                                   </div>
                               @endforelse
                             </tbody>
